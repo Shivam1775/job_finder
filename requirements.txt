@@ -1,0 +1,6 @@
+streamlit
+scikit-learn
+pandas
+numpy
+apify-client
+python-dotenv
