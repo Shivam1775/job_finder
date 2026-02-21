@@ -10,10 +10,13 @@ load_dotenv()
 import nltk
 
 # Download required NLTK data (runs only once in cloud)
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('stopwords')
+nltk_packages = ["stopwords", "punkt", "wordnet", "omw-1.4"]
+
+for pkg in nltk_packages:
+    try:
+        nltk.data.find(pkg)
+    except LookupError:
+        nltk.download(pkg)
 
 # ---- API Token (stored here, not in UI) ----
 try:
