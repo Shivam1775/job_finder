@@ -4,3 +4,5 @@ pandas
 numpy
 apify-client
 python-dotenv
+pdfplumber
+nltk
