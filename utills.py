@@ -7,6 +7,13 @@ from nltk.stem import WordNetLemmatizer
 import os
 from dotenv import load_dotenv
 load_dotenv()
+import nltk
+
+# Download required NLTK data (runs only once in cloud)
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
 
 # ---- API Token (stored here, not in UI) ----
 try:
