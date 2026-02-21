@@ -5,9 +5,16 @@ import re
 import nltk
 from nltk.stem import WordNetLemmatizer
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # ---- API Token (stored here, not in UI) ----
-APIFY_API_TOKEN = ApifyClient(os.getenv("APIFY_API_TOKEN"))  # 🔑 Replace with your actual token
+try:
+    APIFY_TOKEN = st.secrets["APIFY_API_TOKEN"]
+except:
+    # fallback for local .env
+    APIFY_TOKEN = os.getenv("APIFY_API_TOKEN")
+
 
 # Load model and vectorizer
 clf = pickle.load(open("knc.pkl", "rb"))
@@ -78,7 +85,7 @@ def _extract_url(item):
 
 # Fetch jobs from Apify Naukri scraper
 def get_jobs(keyword):
-    client = ApifyClient(APIFY_API_TOKEN)
+    client = ApifyClient(APIFY_TOKEN)
 
     run_input = {
         "keyword": keyword,
